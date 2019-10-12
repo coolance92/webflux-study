@@ -1,6 +1,7 @@
 package com.coolance.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
@@ -11,7 +12,7 @@ import java.util.stream.IntStream;
 
 /**
  * @ClassName TestController
- * @Description TODO
+ * @Description webflux开发-1
  * @Author Coolance
  * @Version
  * @Date 2019/10/12 9:49
@@ -36,7 +37,7 @@ public class TestController {
         return result;
     }
 
-    @GetMapping("/flux")
+    @GetMapping(value = "/flux", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> getFlux() {
         Flux<String> result = Flux.fromStream(IntStream.range(1, 5).mapToObj(i -> {
             try {
